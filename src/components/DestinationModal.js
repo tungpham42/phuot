@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 // Fix icon issue with Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -35,6 +37,7 @@ const DestinationModal = ({ show, handleClose, destination }) => {
         {/* Hiển thị bản đồ */}
         <h4 className="mt-4">Vị trí trên bản đồ</h4>
         <Button onClick={toggleTerrain} variant="secondary" className="mb-3">
+          <FontAwesomeIcon icon={faMap} className="me-2" />
           {terrainView ? "Chế độ Mặc định" : "Chế độ Địa hình"}
         </Button>
         <MapContainer
@@ -66,6 +69,7 @@ const DestinationModal = ({ show, handleClose, destination }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
+          <FontAwesomeIcon icon={faTimes} className="me-2" />
           Đóng
         </Button>
       </Modal.Footer>

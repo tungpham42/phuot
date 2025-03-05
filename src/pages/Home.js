@@ -10,25 +10,31 @@ import {
 } from "react-bootstrap";
 import destinations from "../data/destinations";
 import DestinationModal from "../components/DestinationModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Home = () => {
   const [selectedDestination, setSelectedDestination] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState(""); // State cho thanh tìm kiếm
-  const itemsPerPage = 12; // Số lượng item mỗi trang
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("Tất cả");
+  const itemsPerPage = 12;
 
   const handleShowModal = (destination) => {
     setSelectedDestination(destination);
     setModalShow(true);
   };
 
-  // Lọc địa điểm dựa trên từ khóa tìm kiếm
-  const filteredDestinations = destinations.filter((destination) =>
-    destination.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const regions = ["Tất cả", ...new Set(destinations.map((d) => d.region))];
+
+  const filteredDestinations = destinations.filter(
+    (destination) =>
+      destination.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedRegion === "Tất cả" || destination.region === selectedRegion)
   );
 
-  // Phân trang
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredDestinations.slice(
@@ -36,7 +42,7 @@ const Home = () => {
     indexOfLastItem
   );
   const totalPages = Math.ceil(filteredDestinations.length / itemsPerPage);
-
+  const currentYear = new Date().getFullYear();
   return (
     <Container className="mt-4">
       <Row className="text-center mb-4">
@@ -46,32 +52,52 @@ const Home = () => {
         </Col>
       </Row>
 
-      {/* Thanh Tìm Kiếm */}
       <Row className="mb-3">
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 3, offset: 3 }}>
+          <Form.Select
+            aria-label="Chọn khu vực"
+            as="select"
+            value={selectedRegion}
+            onChange={(e) => {
+              setSelectedRegion(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            {regions.map((region) => (
+              <option key={region} value={region}>
+                {region}
+              </option>
+            ))}
+          </Form.Select>
+        </Col>
+        <Col md={3}>
           <Form.Control
             type="text"
             placeholder="Tìm kiếm địa điểm..."
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset về trang đầu tiên khi tìm kiếm
+              setCurrentPage(1);
             }}
           />
         </Col>
       </Row>
 
-      {/* Danh sách địa điểm */}
       <Row>
         {currentItems.length > 0 ? (
           currentItems.map((destination) => (
-            <Col md={4} key={destination.id} className="mb-4">
+            <Col
+              xl={4}
+              lg={4}
+              md={6}
+              sm={6}
+              key={destination.id}
+              className="mb-4"
+            >
               <Card className="d-flex flex-column h-100 shadow-lg">
                 <div
                   className="custom-card-img rounded-top"
-                  style={{
-                    backgroundImage: `url(${destination.image})`,
-                  }}
+                  style={{ backgroundImage: `url(${destination.image})` }}
                 ></div>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title>{destination.name}</Card.Title>
@@ -81,6 +107,7 @@ const Home = () => {
                       variant="primary"
                       onClick={() => handleShowModal(destination)}
                     >
+                      <FontAwesomeIcon icon={faEye} className="me-2" />
                       Xem chi tiết
                     </Button>
                   </div>
@@ -95,7 +122,6 @@ const Home = () => {
         )}
       </Row>
 
-      {/* Phân trang */}
       {totalPages > 1 && (
         <Pagination className="justify-content-center mt-4">
           <Pagination.Prev
@@ -120,12 +146,32 @@ const Home = () => {
         </Pagination>
       )}
 
-      {/* Modal chi tiết điểm đến */}
       <DestinationModal
         show={modalShow}
         handleClose={() => setModalShow(false)}
         destination={selectedDestination}
       />
+      <p className="text-center">
+        &copy; {currentYear}{" "}
+        <a
+          className="text-dark font-weight-bold text-decoration-none"
+          href="https://tungpham42.github.io"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Phạm Tùng
+        </a>
+        {", "}
+        <a
+          href="https://github.com/tungpham42/phuot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-dark text-decoration-none"
+        >
+          <FontAwesomeIcon icon={faGithub} className="me-1" />
+          MIT License
+        </a>
+      </p>
     </Container>
   );
 };
