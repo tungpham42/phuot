@@ -47,7 +47,7 @@ const Home = () => {
     <Container className="mt-4">
       <Row className="text-center mb-4">
         <Col>
-          <h1>Phượt Việt Nam</h1>
+          <h1>Phượt thủ Việt Nam</h1>
           <p>Khám phá những địa điểm tuyệt đẹp để đi phượt tại Việt Nam.</p>
         </Col>
       </Row>
