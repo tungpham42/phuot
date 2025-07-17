@@ -1,32 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Fira+Code&display=swap");
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0 !important;
+  font-family: "Work Sans", sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%) !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Fira Code", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace !important;
+}
+
+h1 {
+  font-weight: 700 !important;
+  color: #1a3c34 !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 .custom-card-img {
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
-  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  width: 100% !important;
+  padding-top: 56.25% !important; /* 16:9 aspect ratio */
+  position: relative !important;
+  border-radius: 15px 15px 0 0 !important;
+  transition: transform 0.3s ease !important;
 }
 
-.custom-card-img::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
+.card {
+  border: none !important;
+  border-radius: 15px !important;
+  overflow: hidden !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  background: #ffffff !important;
+}
+
+.card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #2c3e50 !important;
+}
+
+.card-text {
+  color: #6c757d !important;
+  font-size: 0.95rem !important;
+}
+
+.bg-primary.modal-header {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+}
+
+.btn-primary {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  border-radius: 25px !important;
+  padding: 10px 20px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.btn-primary:hover {
+  background-color: #d35400 !important;
+  border-color: #d35400 !important;
+  transform: scale(1.05) !important;
+}
+
+.btn-secondary {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  border-radius: 25px !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.btn-secondary:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+  transform: scale(1.05) !important;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px !important;
+  border: 1px solid #ced4da !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #e67e22 !important;
+  box-shadow: 0 0 8px rgba(230, 126, 34, 0.3) !important;
+}
+
+.pagination .page-item .page-link {
+  border-radius: 50% !important;
+  margin: 0 5px !important;
+  color: #e67e22 !important;
+  border: 1px solid #e67e22 !important;
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #e67e22 !important;
+  color: #fff !important;
+  border-color: #e67e22 !important;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #e67e22 !important;
+  color: #fff !important;
+}
+
+footer p {
+  color: #2c3e50 !important;
+  font-size: 0.9rem !important;
+}
+
+footer a {
+  color: #e67e22 !important;
+  font-weight: 500 !important;
+  transition: color 0.3s ease !important;
+}
+
+footer a:hover {
+  color: #d35400 !important;
+  text-decoration: underline !important;
 }

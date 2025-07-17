@@ -25,18 +25,23 @@ const DestinationModal = ({ show, handleClose, destination }) => {
 
   return (
     <Modal show={show} onHide={handleClose} size="lg" centered>
-      <Modal.Header closeButton>
+      <Modal.Header className="bg-primary text-white">
         <Modal.Title>{destination.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{destination.description}</p>
+        <p className="text-muted">{destination.description}</p>
 
-        {/* Hiển thị hướng dẫn phượt */}
-        <div dangerouslySetInnerHTML={{ __html: destination.travelGuide }} />
+        <div
+          className="mb-4"
+          dangerouslySetInnerHTML={{ __html: destination.travelGuide }}
+        />
 
-        {/* Hiển thị bản đồ */}
         <h4 className="mt-4">Vị trí trên bản đồ</h4>
-        <Button onClick={toggleTerrain} variant="secondary" className="mb-3">
+        <Button
+          onClick={toggleTerrain}
+          variant="primary"
+          className="mb-3 shadow-sm"
+        >
           <FontAwesomeIcon icon={faMap} className="me-2" />
           {terrainView ? "Chế độ Mặc định" : "Chế độ Địa hình"}
         </Button>
@@ -46,7 +51,7 @@ const DestinationModal = ({ show, handleClose, destination }) => {
             destination.coordinates.longitude,
           ]}
           zoom={12}
-          style={{ height: "420px", width: "100%" }}
+          style={{ height: "420px", width: "100%", borderRadius: "10px" }}
           scrollWheelZoom={false}
         >
           <TileLayer
@@ -68,7 +73,7 @@ const DestinationModal = ({ show, handleClose, destination }) => {
         </MapContainer>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="primary" onClick={handleClose} className="shadow-sm">
           <FontAwesomeIcon icon={faTimes} className="me-2" />
           Đóng
         </Button>

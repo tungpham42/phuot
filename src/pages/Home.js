@@ -43,25 +43,30 @@ const Home = () => {
   );
   const totalPages = Math.ceil(filteredDestinations.length / itemsPerPage);
   const currentYear = new Date().getFullYear();
+
   return (
-    <Container className="mt-4">
-      <Row className="text-center mb-4">
+    <Container className="mt-5">
+      <Row className="text-center mb-5">
         <Col>
-          <h1>Phượt thủ Việt Nam</h1>
-          <p>Khám phá những địa điểm tuyệt đẹp để đi phượt tại Việt Nam.</p>
+          <h1 className="display-4 animate__animated animate__fadeIn">
+            Phượt Thủ Việt Nam
+          </h1>
+          <p className="lead text-muted animate__animated animate__fadeIn animate__delay-1s">
+            Khám phá những địa điểm tuyệt đẹp để đi phượt tại Việt Nam.
+          </p>
         </Col>
       </Row>
 
-      <Row className="mb-3">
+      <Row className="mb-4">
         <Col md={{ span: 3, offset: 3 }}>
           <Form.Select
             aria-label="Chọn khu vực"
-            as="select"
             value={selectedRegion}
             onChange={(e) => {
               setSelectedRegion(e.target.value);
               setCurrentPage(1);
             }}
+            className="shadow-sm"
           >
             {regions.map((region) => (
               <option key={region} value={region}>
@@ -79,6 +84,7 @@ const Home = () => {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
+            className="shadow-sm"
           />
         </Col>
       </Row>
@@ -94,13 +100,13 @@ const Home = () => {
               key={destination.id}
               className="mb-4"
             >
-              <Card className="d-flex flex-column h-100 shadow-lg">
+              <Card className="d-flex flex-column h-100 shadow-lg animate__animated animate__zoomIn">
                 <div
                   className="custom-card-img rounded-top"
                   style={{ backgroundImage: `url(${destination.image})` }}
                 ></div>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title>{destination.name}</Card.Title>
+                  <Card.Title className="mt-2">{destination.name}</Card.Title>
                   <Card.Text>{destination.description}</Card.Text>
                   <div className="mt-auto d-flex justify-content-start gap-3">
                     <Button
@@ -117,7 +123,7 @@ const Home = () => {
           ))
         ) : (
           <Col className="text-center">
-            <p>Không tìm thấy địa điểm nào!</p>
+            <p className="text-muted">Không tìm thấy địa điểm nào!</p>
           </Col>
         )}
       </Row>
@@ -151,27 +157,30 @@ const Home = () => {
         handleClose={() => setModalShow(false)}
         destination={selectedDestination}
       />
-      <p className="text-center">
-        &copy; {currentYear}{" "}
-        <a
-          className="text-dark font-weight-bold text-decoration-none"
-          href="https://tungpham42.github.io"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Phạm Tùng
-        </a>
-        {", "}
-        <a
-          href="https://github.com/tungpham42/phuot"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-dark text-decoration-none"
-        >
-          <FontAwesomeIcon icon={faGithub} className="me-1" />
-          MIT License
-        </a>
-      </p>
+
+      <footer className="text-center mt-5">
+        <p>
+          &copy; {currentYear}{" "}
+          <a
+            className="text-decoration-none"
+            href="https://tungpham42.github.io"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Phạm Tùng
+          </a>
+          {", "}
+          <a
+            href="https://github.com/tungpham42/phuot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-decoration-none"
+          >
+            <FontAwesomeIcon icon={faGithub} className="me-1" />
+            MIT License
+          </a>
+        </p>
+      </footer>
     </Container>
   );
 };
