@@ -66,7 +66,7 @@ const Home = () => {
               setSelectedRegion(e.target.value);
               setCurrentPage(1);
             }}
-            className="shadow-sm"
+            className="shadow-sm mb-3"
           >
             {regions.map((region) => (
               <option key={region} value={region}>
@@ -84,7 +84,7 @@ const Home = () => {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
-            className="shadow-sm"
+            className="shadow-sm mb-3"
           />
         </Col>
       </Row>

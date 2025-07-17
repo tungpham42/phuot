@@ -19,7 +19,7 @@ const Destinations = () => {
       <Row className="text-center mb-5">
         <Col>
           <h1 className="display-4 animate__animated animate__fadeIn">
-            Danh Sách Điểm Đ ến
+            Danh Sách Điểm Đến
           </h1>
           <p className="lead text-muted animate__animated animate__fadeIn animate__delay-1s">
             Khám phá những địa điểm tuyệt đẹp để đi phượt tại Việt Nam.
